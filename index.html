@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marwan Ahmed – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --card: #111114;
+      --muted: #a3a3a3;
+      --text: #f4f4f5;
+      --accent: #d4c5a2;
+      --accent-2: #6b7280;
+      --ring: #2a2a30;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 800px at 90% -10%, #1a1a1f 0%, var(--bg) 50%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px 18px 80px; }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 26px;
+      background: linear-gradient(180deg, #131318 0%, var(--card) 100%);
+      border: 1px solid var(--ring);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 86px; height: 86px; border-radius: 50%;
+      background: linear-gradient(135deg, #23232b, #17171c);
+      border: 2px solid var(--ring);
+      overflow: hidden;
+      flex: 0 0 auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,.3);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    h1 { font-size: 32px; line-height: 1.2; margin: 0; }
+    .subtitle { color: var(--muted); font-weight: 500; margin-top: 4px; }
+
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+
+    .chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; background: #15151a; border: 1px solid var(--ring); border-radius: 999px; font-size: 14px; color: var(--text); }
+
+    .grid { display: flex; flex-direction: column; gap: 22px; margin-top: 24px; }
+
+    section.card { background: var(--card); border: 1px solid var(--ring); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+
+    section.card h2 { margin: 0 0 12px; font-size: 20px; letter-spacing: .2px; }
+    section.card h2 span { color: var(--accent); }
+    .muted { color: var(--muted); }
+
+    .about p { margin: 0; }
+
+    .edu { display: grid; gap: 14px; }
+    .edu-item { display: grid; gap: 6px; padding: 14px; border: 1px solid var(--ring); border-radius: 14px; background: #121216; }
+    .edu-item .badge { font-size: 12px; color: #0b0b0d; background: var(--accent); padding: 4px 8px; border-radius: 999px; font-weight: 700; width: fit-content; }
+
+    .timeline { position: relative; padding-left: 18px; }
+    .timeline::before { content: ""; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: var(--accent-2); }
+    .t-item { position: relative; margin: 14px 0; padding-left: 12px; }
+    .t-item::before { content: ""; position: absolute; left: -12px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px #1a1a20; }
+    .t-year { font-weight: 800; color: var(--accent); }
+
+    .skills { display: grid; gap: 12px; }
+    .skill { display: grid; gap: 6px; }
+    .skill-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .bar { height: 10px; background: #1a1a1f; border: 1px solid var(--ring); border-radius: 999px; overflow: hidden; }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #b5a27a); width: 0; }
+    .bar[data-pct="60"] > span { width: 60%; }
+    .bar[data-pct="70"] > span { width: 70%; }
+    .bar[data-pct="90"] > span { width: 90%; }
+    .bar[data-pct="78"] > span { width: 78%; }
+    .bar[data-pct="75"] > span { width: 75%; }
+    .bar[data-pct="57"] > span { width: 57%; }
+
+    .lang-list { display: grid; gap: 10px; margin-top: 14px; }
+    .lang-item { display: flex; align-items: center; justify-content: space-between; border: 1px dashed var(--ring); border-radius: 12px; padding: 10px 12px; background: #101015; }
+    .lang-name { font-weight: 600; }
+    .lang-level { color: var(--accent); font-weight: 700; }
+
+    .testi { display: grid; gap: 14px; }
+    @media (min-width: 640px) { .testi { grid-template-columns: 1fr 1fr; } }
+    .quote { background: #101015; border: 1px solid var(--ring); border-radius: 14px; padding: 16px; }
+    .quote p { margin-top: 0; }
+    .quote footer { margin-top: 10px; color: var(--muted); font-weight: 600; }
+
+    .contact-grid { display: grid; gap: 12px; }
+    @media (min-width: 600px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+    .contact-item { background: #101015; border: 1px solid var(--ring); border-radius: 14px; padding: 14px; }
+
+    .project-img { max-width: 100%; border-radius: 12px; margin-top: 12px; border: 1px solid var(--ring); cursor: pointer; transition: transform .2s ease; }
+    .project-img:hover { transform: scale(1.02); }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    }
+    .lightbox.active { display: flex; }
+
+    footer { color: var(--muted); font-size: 14px; text-align: center; margin-top: 26px; }
+
+    .chip, .contact-item, .edu-item, .quote { transition: transform .2s ease, border-color .2s ease; }
+    .chip:hover, .contact-item:hover, .edu-item:hover, .quote:hover { transform: translateY(-2px); border-color: #2e2e36; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="hero">
+        <div class="avatar">
+          <img src="///C:/Users/AT/OneDrive/Desktop/Marwan/photo.jpg" alt="Marwan Ahmed Photo">
+        </div>
+        <div>
+          <h1>Marwan Ahmed</h1>
+          <div class="subtitle">Software Tester ·Mechanical Engineering Student</div>
+          <div class="links">
+            <span class="chip">📍 Bani Suef, Egypt</span>
+            <a class="chip" href="mailto:marwanahmed1301007@gmail.com">✉ marwanahmed1301007@gmail.com</a>
+            <a class="chip" href="tel:+201064860062">📞 +20 106 486 0062</a>
+            <a class="chip" href="https://www.linkedin.com/in/marwan-ahmed-helmy-365846375" target="_blank" rel="noreferrer noopener">🔗 LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card about">
+        <h2><span>About</span> Me</h2>
+        <p>
+         A Mechanical Engineer and Software Tester who combines technical and engineering expertise to ensure product quality. He has a solid foundation in analysis and problem-solving through his studies in mechanical engineering. He transitioned into the field of software testing to apply his skills in precision and quality assurance to digital products. Proficient in writing test cases, using automated testing tools, and accurately analyzing results. He consistently strives to deliver added value by integrating his engineering background with his software testing expertise to achieve the highest quality standards.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2><span>Personal</span> Skills</h2>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill-header"><strong>Programming</strong><span class="muted">60%</span></div>
+            <div class="bar" data-pct="60"><span></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-header"><strong>Python</strong><span class="muted">70%</span></div>
+            <div class="bar" data-pct="70"><span></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-header"><strong>HTML</strong><span class="muted">90%</span></div>
+            <div class="bar" data-pct="90"><span></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-header"><strong>Problem Solving</strong><span class="muted">78%</span></div>
+            <div class="bar" data-pct="78"><span></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-header"><strong>Digital Art</strong><span class="muted">75%</span></div>
+            <div class="bar" data-pct="75"><span></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-header"><strong>Social Skills</strong><span class="muted">57%</span></div>
+            <div class="bar" data-pct="57"><span></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-header"><strong>Manual Testing</strong><span class="muted">Beginner</span></div>
+          </div>
+        </div>
+        <h3 class="muted" style="margin:16px 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.12em;">Languages</h3>
+        <div class="lang-list">
+          <div class="lang-item">
+            <span class="lang-name">Arabic <span class="muted">/ العربية</span></span>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <span class="lang-level">Intermediate</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span>Educational</span> Background</h2>
+        <div class="edu">
+          <div class="edu-item">
+            <div class="badge">2023–2024 · Udacity · DESI Initiative</div>
+            <strong>Python Course</strong>
+            <p class="muted">Studied the basics of Python, completed small assignments, and delivered a final project.</p>
+          </div>
+          <div class="edu-item">
+            <div class="badge">2023–2024 · Udacity · DESI Initiative</div>
+            <strong>HTML Course</strong>
+            <p class="muted">Learned the basics of building and developing websites.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span>Steps</span> on Programming</h2>
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-year">2023</div>
+            <div class="muted">I studied Python and HTML at Udacity and completed small assignments.</div>
+          </div>
+          <div class="t-item">
+            <div class="t-year">2024</div>
+            <div class="muted">Built my first Python project and earned a certificate from Udacity and DESI Initiative.</div>
+          </div>
+          <div class="t-item">
+            <div class="t-year">2025</div>
+            <div class="muted">Joined the DEPI Initiative and studied Java testing and freelancing skills.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span>Project</span></h2>
+        <p>Here is a sample Java project I worked on:</p>
+        <img src=":///C:/Users/AT/OneDrive/Desktop/Marwan/Screenshot 2025-09-06 205526.png" alt="Java project screenshot" class="project-img" id="projectImg">
+      </section>
+
+      <section class="card">
+        <h2><span>Testimonials</span></h2>
+        <div class="testi">
+          <blockquote class="quote">
+            <p>“Working with Marwan was a game-changer for our project. His attention to detail, ability to think like an end user, and dedication to finding even the smallest bugs ensured we launched a strong product. He also provided insights to improve the overall user experience.”</p>
+            <footer>— John William</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>“I’ve collaborated with many QA professionals, but Marwan stands out for his proactive approach and clear communication. He caught critical issues early in the development cycle, saving time and resources. His understanding of testing tools and methodologies made him invaluable.”</p>
+            <footer>— Mark</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span>Let’s</span> Work Together</h2>
+        <div class="contact-grid">
+          <div class="contact-item"><strong>Location</strong><br><span class="muted">Bani Suef, Egypt</span></div>
+          <div class="contact-item"><strong>Email</strong><br><a href="mailto:marwanahmed1301007@gmail.com">marwanahmed1301007@gmail.com</a></div>
+          <div class="contact-item"><strong>Phone</strong><br><a href="tel:+201064860062">+20 106 486 0062</a></div>
+          <div class="contact-item" style="grid-column: 1 / -1"><strong>LinkedIn</strong><br><a href="https://www.linkedin.com/in/marwan-ahmed-helmy-365">linkedin.com/in/marwan-ahmed-helmy-365846375</a>
